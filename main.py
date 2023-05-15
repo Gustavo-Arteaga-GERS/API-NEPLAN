@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 from flask_cors import CORS
 from flask_cors import cross_origin
 
+
+from flask_session import Session
 from datetime import timedelta
 
 load_dotenv()
@@ -30,11 +32,9 @@ neplanservice, project = webservice.logging(user_name, password, project_name, y
 
 @app.route("/calculator_neplan", methods = ['POST'])
 
-def show_work():
-    session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=30)
-    form = MyForm(request.form)
-    return render_template('home.html', form = form)
+def make_session_permanent():
+    Session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=7)
 
 
 def neplan():
