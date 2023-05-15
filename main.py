@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, Flask,jsonify,redirect, make_response
+from flask import Blueprint, render_template, request, flash, redirect, url_for, Flask,jsonify,redirect, make_response,session, app
 import json
 import numpy as np
 import pandas as pd
@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from flask_cors import CORS
 from flask_cors import cross_origin
 
+from datetime import timedelta
 
 load_dotenv()
 app = Flask(__name__)
@@ -26,9 +27,12 @@ webservice = WebService()
 neplanservice, project = webservice.logging(user_name, password, project_name, yourURL)
 
 @app.route("/calculator_neplan", methods = ['POST'])
+
 def make_session_permanent():
   session.permanent = True
   app.permanent_session_lifetime = timedelta(minutes=8)
+
+
 def neplan():
 
     # input_data:
