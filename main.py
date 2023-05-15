@@ -26,6 +26,9 @@ webservice = WebService()
 neplanservice, project = webservice.logging(user_name, password, project_name, yourURL)
 
 @app.route("/calculator_neplan", methods = ['POST'])
+def make_session_permanent():
+  session.permanent = True
+  app.permanent_session_lifetime = timedelta(minutes=8)
 def neplan():
 
     # input_data:
