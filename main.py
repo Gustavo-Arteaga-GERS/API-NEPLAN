@@ -26,15 +26,13 @@ yourURL = os.getenv('YOUR_URL')
 webservice = WebService()
 neplanservice, project = webservice.logging(user_name, password, project_name, yourURL)
 
-@app.before_request
-def set_session_timeout():
-    session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=30)
+
 
 @app.route("/calculator_neplan", methods = ['POST'])
 
 
 def neplan():
+  session.permanent = True
 
 
 
