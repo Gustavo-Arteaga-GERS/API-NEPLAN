@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, Flask,jsonify,redirect, make_response,session, app
+from flask import Blueprint, render_template, request, flash, redirect, url_for, Flask,jsonify,redirect, make_response, session, app
 import json
 import numpy as np
 import pandas as pd
@@ -28,12 +28,13 @@ neplanservice, project = webservice.logging(user_name, password, project_name, y
 
 @app.route("/calculator_neplan", methods = ['POST'])
 
-def make_session_permanent():
-  session.permanent = True
-  app.permanent_session_lifetime = timedelta(minutes=8)
+
 
 
 def neplan():
+
+  session.permanent = True
+  app.permanent_session_lifetime = timedelta(minutes=8)
 
     # input_data:
     jsonInput = request.get_json()
