@@ -33,3 +33,4 @@ Werkzeug==2.2.3
 zeep==4.2.1
 beautifulsoup4==4.12.2
 bs4==0.0.1
+xmltodict==0.13.0
