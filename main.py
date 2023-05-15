@@ -31,8 +31,9 @@ neplanservice, project = webservice.logging(user_name, password, project_name, y
 
 
 
-
+@app.route("/calculator_neplan", methods = ['POST'])
 def neplan():
+    Session.permanent = True
   
 
 
