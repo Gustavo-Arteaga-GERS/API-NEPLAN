@@ -28,13 +28,28 @@ neplanservice, project = webservice.logging(user_name, password, project_name, y
 
 @app.route("/calculator_neplan", methods = ['POST'])
 
+def before_request():
+    # Check if user is anonymous
+    g.user = current_user
+    login_manager.anonymous_user = Anonymous
 
+    # Check site is in maintenance mode
+    maintenance = Setting().get('maintenance')
+    if maintenance and current_user.is_authenticated and current_user.role.name not in [
+            'Administrator', 'Operator'
+    ]:
+        return render_template('maintenance.html')
+
+    # Manage session timeout
+    session.permanent = True
+    current_app.permanent_session_lifetime = datetime.timedelta(
+        minutes=int(Setting().get('session_timeout')))
+    session.modified = True 
 
 
 def neplan():
 
-  session.permanent = True
-  app.permanent_session_lifetime = timedelta(minutes=8)
+
 
     # input_data:
     jsonInput = request.get_json()
