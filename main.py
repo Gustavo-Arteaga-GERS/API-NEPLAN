@@ -61,7 +61,7 @@ def neplan():
     attributeName_2 = "Pset"
     attributeName_3 = "Pset"
 
-    for i in range(0, 48):
+    for i in range(0, 24):
 
         neplanservice.SetElementAttributeByID(project, elementID_1, attributeName_1, Dem[i])
         neplanservice.SetElementAttributeByID(project, elementID_2, attributeName_2, Pv1kw[i])
